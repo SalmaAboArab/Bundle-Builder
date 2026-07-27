@@ -5,10 +5,10 @@
 // export default App;
 
 import { Button, Container, Typography } from "@mui/material";
-import { useSnackbar } from "notistack";
+import { useToast } from "./hooks/useToast";
 
 function App() {
-  const { enqueueSnackbar } = useSnackbar();
+  const toast = useToast();
 
   return (
     <Container sx={{ py: 4 }}>
@@ -19,9 +19,8 @@ function App() {
       <Button
         variant="contained"
         onClick={() => {
-          enqueueSnackbar("System saved successfully!", {
-            variant: "success",
-          });
+          toast.success("System saved successfully.");
+          toast.error("Something went wrong.");
         }}
       >
         MUI Works!
