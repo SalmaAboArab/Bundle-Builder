@@ -21,7 +21,7 @@ export default function Builder() {
         icon={<CameraRearOutlined color="disabled" />}
         selected
         selectedCount={2}
-        title="Select Products"
+        title="Choose your cameras"
         step={1}
       >
         <Grid
