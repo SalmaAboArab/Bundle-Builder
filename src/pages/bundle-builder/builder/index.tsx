@@ -24,15 +24,33 @@ export default function Builder() {
         title="Select Products"
         step={1}
       >
-        <Grid container spacing={2} sx={{ justifyContent: "center", alignItems: "center" }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ alignItems: "stretch", justifyContent: "center" }}
+        >
           {Cameras.map((camera) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 6 }} key={camera.id}>
+            <Grid
+              key={camera.id}
+              size={{ xs: 12, sm: 4, md: 6}}
+              sx={{ display: "flex" }}
+            >
               <ProductCard cardData={camera} />
             </Grid>
           ))}
         </Grid>
-        <Box sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-          <Button sx={{ mt: 2, textTransform: "none" }} variant="outlined" color="primary">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            sx={{ mt: 2, textTransform: "none" }}
+            variant="outlined"
+            color="primary"
+          >
             Next: Choose your plan
           </Button>
         </Box>
