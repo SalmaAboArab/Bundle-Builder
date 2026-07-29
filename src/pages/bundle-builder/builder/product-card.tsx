@@ -1,5 +1,8 @@
+import { Add, Remove } from "@mui/icons-material";
 import {
   Box,
+  Button,
+  ButtonBase,
   Chip,
   Grid,
   Link,
@@ -52,39 +55,54 @@ export default function ProductCard({ cardData }: any) {
             }}
           >
             {cardData.desc} &nbsp;
-            <Link sx={{cursor: "pointer" }}>
-              Learn More
-            </Link>
+            <Link sx={{ cursor: "pointer" }}>Learn More</Link>
           </Typography>
-          {/* <Typography variant="body2">Color: {cardData.defaultColor}</Typography> */}
-          {cardData?.colors && cardData?.colors?.length > 0 && (
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{ mt: 1, alignItems: "center" }}
-            >
-              <Typography variant="body2">Color:</Typography>
-              <Stack direction="row" spacing={1}>
-                {cardData?.colors?.map((color: any, index: number) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: "50%",
-                      backgroundColor: color.color.toLowerCase(),
-                      border:
-                        color.color.toLowerCase() ===
-                        cardData.defaultColor.toLowerCase()
-                          ? `2px solid ${theme.palette.primary.main}`
-                          : "1px solid #ccc",
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
-              </Stack>
-            </Stack>
-          )}
+
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+              my: 1,
+            }}
+          >
+            {cardData?.colors?.map((option: any) => (
+              <ButtonBase
+                // onClick={() => setSelected(option.color)}
+                sx={{
+                  // width: "100%",
+                  px: 0.5,
+                  border: "0.5px solid #CCCCCC",
+                  // borderColor: "primary.main",
+                  //   selected === option.color ? "primary.main" : "divider",
+                  borderRadius: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  // gap: 0.3,
+                  transition: "all .2s",
+
+                  "&:hover": {
+                    borderColor: "primary.main",
+                  },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={option.img}
+                  alt={option.color}
+                  sx={{
+                    width: 25,
+                    height: 25,
+                    objectFit: "contain",
+                  }}
+                />
+
+                <Typography variant="caption">{option.color}</Typography>
+              </ButtonBase>
+            ))}
+          </Box>
+
           <Stack
             direction="row"
             spacing={1}
@@ -94,7 +112,39 @@ export default function ProductCard({ cardData }: any) {
               justifyContent: "space-between",
             }}
           >
-            <Typography variant="body2">Count: {cardData.count}</Typography>
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+              <Button
+                size="small"
+                color="inherit"
+                sx={{
+                  p: 0.5,
+                  border: "2px solid #E6EBF0",
+                  width: "24px",
+                  height: "24px",
+                  borderRadius: 1,
+                  minWidth: 0,
+                }}
+              >
+                <Remove
+                  sx={{ width: "20px", height: "20px", color: "#CED6DE" }}
+                />
+              </Button>
+              <Typography variant="body2">{cardData.count}</Typography>
+              <Button
+                size="small"
+                color="inherit"
+                sx={{
+                  p: 0.5,
+                  bgcolor: "#F0F4F7",
+                  width: "24px",
+                  height: "24px",
+                  borderRadius: 1,
+                  minWidth: 0,
+                }}
+              >
+                <Add sx={{ width: "20px", height: "20px", color: "#525963" }} />
+              </Button>
+            </Stack>
             {cardData.hasDiscount ? (
               <Stack direction="column" spacing={0} sx={{ mt: 1 }}>
                 <Typography

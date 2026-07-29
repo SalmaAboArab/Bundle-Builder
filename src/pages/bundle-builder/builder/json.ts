@@ -14,11 +14,11 @@ import cam5B from "../../../assets/cameras/cam5B.png";
 import cam5W from "../../../assets/cameras/cam5W.png";
 
 export const CamerasColors = {
-    c1: [{color: "Black", img: cam1B}, {color: "Grey", img: cam1G}, {color: "White", img: cam1W}],
-    c2: [{color: "Black", img: cam2B}, {color: "White", img: cam2W}],
-    c3: [{color: "Black", img: cam3B}, {color: "White", img: cam3W}],
+    c1: [{color: "White", img: cam1W}, {color: "Black", img: cam1B}, {color: "Grey", img: cam1G}],
+    c2: [{color: "White", img: cam2W}, {color: "Black", img: cam2B}],
+    c3: [{color: "White", img: cam3W}, {color: "Black", img: cam3B}],
     c4: [],
-    c5: [{color: "Black", img: cam5B}, {color: "White", img: cam5W}],
+    c5: [{color: "White", img: cam5W}, {color: "Black", img: cam5B}],
 }
 
 export const Cameras = [

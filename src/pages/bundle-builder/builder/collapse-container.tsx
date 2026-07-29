@@ -5,7 +5,6 @@ import {
   Box,
   Grid,
   Button,
-  Divider,
   Tooltip,
   Collapse,
   useTheme,
@@ -22,6 +21,7 @@ type Props = {
   icon: ReactNode;
   selected: boolean;
   step?: number;
+  isOpen?: boolean;
 } & (
   | {
       selected: true;
@@ -33,17 +33,35 @@ type Props = {
     }
 );
 
-export default function CollapseContainer({ children, title, icon, step, selected, selectedCount }: Props) {
+export default function CollapseContainer({
+  children,
+  title,
+  icon,
+  step,
+  selected,
+  selectedCount,
+  isOpen,
+}: Props) {
   const theme = useTheme();
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(isOpen || false);
 
   const handleCollapseToggle = () => {
     setOpen(!open);
   };
 
   return (
-    <Box component="div" sx={{ bgcolor: open ? theme.palette.secondary.main : "transparent", py: 1, borderRadius: 2 }}>
-        <Typography variant="caption" gutterBottom sx={{ p: 2, color: theme.palette.text.secondary }}>
+    <Box
+      component="div"
+      sx={{
+        bgcolor: open ? theme.palette.secondary.main : "transparent",
+        borderRadius: 2,
+      }}
+    >
+      <Typography
+        variant="caption"
+        gutterBottom
+        sx={{ p: 2, color: theme.palette.text.secondary }}
+      >
         Step {step} of 4
       </Typography>
       <Box
@@ -51,23 +69,19 @@ export default function CollapseContainer({ children, title, icon, step, selecte
           width: "100%",
           mt: 0.5,
           borderTop: `0.5px solid #1F1F1F`,
-          borderBottom: `0.5px solid #1F1F1F`,
+          borderBottom: open ? `` : `0.5px solid #1F1F1F`,
           // borderRadius: 1,
           p: 2,
         }}
       >
         <Grid
           container
-          spacing={1}
+          spacing={2}
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
           <Grid
             size={{
-              xs: 12,
-              sm: 7,
-              // sm: open ? 7 : 12,
-              // md: open ? 9 : 12,
-              // xl: open ? 10 : 12,
+              xs: 8,
             }}
           >
             <Box
@@ -104,25 +118,44 @@ export default function CollapseContainer({ children, title, icon, step, selecte
             </Box>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 5 }} sx={{ textAlign: "right" }}>
-            <Button
-              onClick={handleCollapseToggle}
-              variant="text"
-              size="medium"
+          <Grid size={{ xs: 4 }}>
+            <Box
               sx={{
-                textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "end",
+                // gap: 0.3,
+                color: theme.palette.primary.main,
               }}
             >
-              {selected && (
-                <Typography variant="caption"> {selectedCount} selected</Typography>
-              )}
+            {selected && (
+              <Typography variant="caption" onClick={handleCollapseToggle} sx={{cursor: "pointer"}}>
+                {selectedCount} {window.innerWidth < 400 ? "Sel" : "Selected"}
+              </Typography>
+            )}
+            <IconButton
+              onClick={handleCollapseToggle}
+              // variant="text"
+              size="small"
+              sx={{
+                // width: "100%",
+                // ml: 'auto',
+                textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "end",
+              }}
+              color="primary"
+            >
+
               <ArrowDropUp
                 sx={{
                   transform: !open ? "rotate(-180deg)" : "rotate(0deg)",
                   transition: "transform 0.3s ease-in-out",
                 }}
               />
-            </Button>
+            </IconButton>
+            </Box>
           </Grid>
         </Grid>
         <Collapse in={open} timeout="auto" unmountOnExit sx={{ pt: "24px" }}>
