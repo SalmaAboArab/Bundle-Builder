@@ -8,7 +8,7 @@ import {
   PentagonOutlined,
   SpeakerPhone,
 } from "@mui/icons-material";
-import { Cameras } from "./json";
+import { Cameras } from "./cameras-json";
 
 export default function Builder() {
   const theme = useTheme();
