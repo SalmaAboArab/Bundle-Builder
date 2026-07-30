@@ -94,7 +94,7 @@ const Collapse = ({
         {Cameras.map((camera) => (
           <Grid
             key={camera.id}
-            size={{ xs: 12, sm: 4, md: 6 }}
+            size={{ xs: 12, sm: 6, md: 4, lg: 6 }}
             sx={{ display: "flex" }}
           >
             <ProductCard cardData={camera} />

@@ -1,7 +1,59 @@
-import React from 'react'
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
+import React from "react";
+import type { SelectedItemTypes } from "../types/main-types";
+import img from "../../../assets/hero.png";
+import CountButtons from "../../../shared-components/count-buttons";
 
-export default function SelectedItemGroup() {
+export default function SelectedItemGroup({
+  title,
+  data,
+}: {
+  title: string;
+  data: any;
+}) {
+  const theme = useTheme();
   return (
-    <div>SelectedItemGroup</div>
-  )
+    <Stack
+      direction="column"
+      spacing={2}
+      sx={{ borderTop: "1px solid #CED6DE", mt: 1.5, py: 1 }}
+    >
+      <Typography variant="caption" sx={{ color: "#A8B2BD" }}>
+        {title}
+      </Typography>
+
+      {data?.map((item: SelectedItemTypes, index: number) => (
+        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+            <Box
+              sx={{
+                width: 45,
+                height: 45,
+                bgcolor: theme.palette.background.paper,
+                borderRadius: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={img}
+                alt="Satisfaction Badge"
+                style={{ width: "35px", height: "35px", color: "#0AA288" }}
+              />
+            </Box>
+            <Typography variant="body2">{item?.name}</Typography>
+          </Stack>
+          <CountButtons count={item.count} onClickAction={(action: 'add' | 'remove')=>{}} 
+          ButtonSx={{
+            bgcolor: index%2 === 0 ? theme.palette.background.paper : '#F1F1F2',
+            color: '#575757',
+            border: index%2 !== 0 ? '1px solid #CED6DE' : 'none',
+          }} 
+          />
+        </Stack>
+      ))}
+      {/* <Divider style={{marginTop: "10px"}}/> */}
+    </Stack>
+  );
 }

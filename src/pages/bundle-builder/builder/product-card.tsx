@@ -11,16 +11,21 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
+import CountButtons from "../../../shared-components/count-buttons";
 
 export default function ProductCard({ cardData }: any) {
   const theme = useTheme();
   return (
     <Box
-      sx={{ bgcolor: theme.palette.background.paper, p: 2, borderRadius: 2 }}
+      sx={{ bgcolor: theme.palette.background.paper, p: 2, borderRadius: 2, width: '100%', display: 'flex', }}
     >
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 12, md: 4 }}>
-          <Stack direction="column" spacing={1} sx={{ alignItems: "center" }}>
+      <Grid container spacing={2} sx={{alignItems: 'center'}}>
+        <Grid size={{ xs: 12, md: 4 }} 
+        // sx={{width: '100%', height:'100%'}}
+        >
+          <Stack direction="column" spacing={1} 
+          // sx={{width: '100%', height:'100%'}}
+          >
             {cardData.hasDiscount && (
               <Chip
                 label={
@@ -33,14 +38,18 @@ export default function ProductCard({ cardData }: any) {
                 }
                 color="primary"
                 size="small"
-                // sx={{height: "15px"}}
+                sx={{width: '80px'}}
               />
             )}
+            <Box 
+            // sx={{width: '100%', height:'70%'}}
+            >
             <img
               src={cardData.image}
               alt={cardData.name}
-              style={{ width: "100%", borderRadius: 8 }}
+              style={{ width: "100%", height: '100%', borderRadius: 8 }}
             />
+            </Box>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, md: 8 }}>
@@ -112,39 +121,7 @@ export default function ProductCard({ cardData }: any) {
               justifyContent: "space-between",
             }}
           >
-            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-              <Button
-                size="small"
-                color="inherit"
-                sx={{
-                  p: 0.5,
-                  border: "2px solid #E6EBF0",
-                  width: "24px",
-                  height: "24px",
-                  borderRadius: 1,
-                  minWidth: 0,
-                }}
-              >
-                <Remove
-                  sx={{ width: "20px", height: "20px", color: "#CED6DE" }}
-                />
-              </Button>
-              <Typography variant="body2">{cardData.count}</Typography>
-              <Button
-                size="small"
-                color="inherit"
-                sx={{
-                  p: 0.5,
-                  bgcolor: "#F0F4F7",
-                  width: "24px",
-                  height: "24px",
-                  borderRadius: 1,
-                  minWidth: 0,
-                }}
-              >
-                <Add sx={{ width: "20px", height: "20px", color: "#525963" }} />
-              </Button>
-            </Stack>
+            <CountButtons count={cardData.count} onClickAction={(action: 'add' | 'remove')=>{}}/>
             {cardData.hasDiscount ? (
               <Stack direction="column" spacing={0} sx={{ mt: 1 }}>
                 <Typography
