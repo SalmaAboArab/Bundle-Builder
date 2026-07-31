@@ -1,7 +1,5 @@
-import { Add, Remove } from "@mui/icons-material";
 import {
   Box,
-  Button,
   ButtonBase,
   Chip,
   Grid,
@@ -13,11 +11,15 @@ import {
 import React from "react";
 import CountButtons from "../../../shared-components/count-buttons";
 
-export default function ProductCard({ cardData }: any) {
+export default function ProductCard({ cardData, type }: {cardData: any; type: 'cameras' | 'plan' | 'accessories' | 'sensors';}) {
   const theme = useTheme();
   return (
     <Box
-      sx={{ bgcolor: theme.palette.background.paper, p: 2, borderRadius: 2, width: '100%', display: 'flex', }}
+      sx={{ bgcolor: theme.palette.background.paper, p: 1.5, borderRadius: 2, width: '100%', display: 'flex', 
+        border: cardData?.selected ? `2px solid ${theme.palette.primary.main}` : 'none',
+        ":hover":{
+        boxShadow: 1, cursor: 'pointer'
+      } }}
     >
       <Grid container spacing={2} sx={{alignItems: 'center'}}>
         <Grid size={{ xs: 12, md: 4 }} 
@@ -45,15 +47,15 @@ export default function ProductCard({ cardData }: any) {
             // sx={{width: '100%', height:'70%'}}
             >
             <img
-              src={cardData.image}
-              alt={cardData.name}
+              src={cardData?.image}
+              alt={cardData?.name}
               style={{ width: "100%", height: '100%', borderRadius: 8 }}
             />
             </Box>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, md: 8 }}>
-          <Typography variant="body2">{cardData.name}</Typography>
+          <Typography variant="body2">{cardData?.name}</Typography>
           <Typography
             variant="caption"
             color="textDisabled"
@@ -121,7 +123,7 @@ export default function ProductCard({ cardData }: any) {
               justifyContent: "space-between",
             }}
           >
-            <CountButtons count={cardData.count} onClickAction={(action: 'add' | 'remove')=>{}}/>
+            {type !== 'plan' && <CountButtons count={cardData.count} onClickAction={(action: 'add' | 'remove')=>{}}/>}
             {cardData.hasDiscount ? (
               <Stack direction="column" spacing={0} sx={{ mt: 1 }}>
                 <Typography
@@ -129,7 +131,7 @@ export default function ProductCard({ cardData }: any) {
                   sx={{
                     color: "error.main",
                     textDecoration: "line-through",
-                    textDecorationThickness: "2px",
+                    // textDecorationThickness: "2px",
                   }}
                 >
                   ${cardData.price.toFixed(2)}

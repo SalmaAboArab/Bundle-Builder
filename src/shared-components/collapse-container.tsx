@@ -22,6 +22,7 @@ type Props = {
   selected: boolean;
   step?: number;
   isOpen?: boolean;
+  onToggle: () => void;
 } & (
   | {
       selected: true;
@@ -41,19 +42,20 @@ export default function CollapseContainer({
   selected,
   selectedCount,
   isOpen,
+  onToggle,
 }: Props) {
   const theme = useTheme();
-  const [open, setOpen] = useState<boolean>(isOpen || false);
+  // const [open, setOpen] = useState<boolean>(isOpen || false);
 
-  const handleCollapseToggle = () => {
-    setOpen(!open);
-  };
+  // const handleCollapseToggle = () => {
+  //   setOpen(!open);
+  // };
 
   return (
     <Box
       component="div"
       sx={{
-        bgcolor: open ? theme.palette.secondary.main : "transparent",
+        bgcolor: isOpen ? theme.palette.secondary.main : "transparent",
         borderRadius: 2,
       }}
     >
@@ -69,7 +71,7 @@ export default function CollapseContainer({
           width: "100%",
           mt: 0.5,
           borderTop: `0.5px solid #1F1F1F`,
-          borderBottom: open ? `` : `0.5px solid #1F1F1F`,
+          borderBottom: isOpen ? `` : `0.5px solid #1F1F1F`,
           // borderRadius: 1,
           p: 2,
         }}
@@ -128,13 +130,13 @@ export default function CollapseContainer({
                 color: theme.palette.primary.main,
               }}
             >
-            {selected && (
-              <Typography variant="caption" onClick={handleCollapseToggle} sx={{cursor: "pointer"}}>
+            {selected && isOpen && (
+              <Typography variant="caption" onClick={onToggle} sx={{cursor: "pointer"}}>
                 {selectedCount} {window.innerWidth < 400 ? "Sel" : "Selected"}
               </Typography>
             )}
             <IconButton
-              onClick={handleCollapseToggle}
+              onClick={onToggle}
               // variant="text"
               size="small"
               sx={{
@@ -150,7 +152,7 @@ export default function CollapseContainer({
 
               <ArrowDropUp
                 sx={{
-                  transform: !open ? "rotate(-180deg)" : "rotate(0deg)",
+                  transform: !isOpen ? "rotate(-180deg)" : "rotate(0deg)",
                   transition: "transform 0.3s ease-in-out",
                 }}
               />
@@ -158,7 +160,7 @@ export default function CollapseContainer({
             </Box>
           </Grid>
         </Grid>
-        <Collapse in={open} timeout="auto" unmountOnExit sx={{ pt: "24px" }}>
+        <Collapse in={isOpen} timeout="auto" unmountOnExit sx={{ pt: "24px" }}>
           {children}
         </Collapse>
       </Box>

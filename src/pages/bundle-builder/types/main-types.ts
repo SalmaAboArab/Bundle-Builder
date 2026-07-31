@@ -5,7 +5,7 @@ export type SelectedTypes = {
   plan: [];
 };
 
-export type SelectedItemTypes ={
+export type SelectedItemTypes = {
     id: number;
     name: string;
     price: number;
@@ -14,3 +14,5 @@ export type SelectedItemTypes ={
     count: number;
     image: string;
   }
+
+  export type ProductsNamesTypes = "cameras" | "plan" | "accessories" | "sensors";

@@ -1,17 +1,23 @@
 import { Box, Button, Grid, Stack, Typography, useTheme } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ProductCard from "./product-card";
-import CollapseContainer from "./collapse-container";
+import CollapseContainer from "../../../shared-components/collapse-container";
 import {
   Apps,
   CameraRearOutlined,
   PentagonOutlined,
   SpeakerPhone,
 } from "@mui/icons-material";
-import { Cameras } from "./cameras-json";
+import { Cameras } from "../../../json/cameras-json";
+import { Sensors } from "../../../json/sensors-json";
+import { Plans } from "../../../json/plan-json";
+import { Accessories } from "../../../json/accessories-json";
+import { ProductsNames } from "../../../json/global-json";
+import type { ProductsNamesTypes } from "../types/main-types";
 
 export default function Builder() {
   const theme = useTheme();
+  const [openStep, setOpenStep] = useState(1);
   return (
     <Stack
       direction="column"
@@ -23,31 +29,43 @@ export default function Builder() {
       <Collapse
         title="Choose your cameras"
         step={1}
-        isOpen={true}
         icon={<CameraRearOutlined color="disabled" />}
         selected={true}
         selectedCount={2}
+        data={Cameras}
+        // type="cameras"
+        isOpen={openStep === 1}
+        onToggle={(step: number) => {openStep === 1 && step === 1 ? setOpenStep(0) : setOpenStep(step)}}
       />
       <Collapse
         title="Choose your plan"
         step={2}
-        isOpen={false}
         icon={<PentagonOutlined color="disabled" />}
         selected={false}
+        data={Plans}
+        // type="plan"
+        isOpen={openStep === 2}
+        onToggle={(step: number) => {openStep === 2  && step === 2 ? setOpenStep(0) : setOpenStep(step)}}
       />
       <Collapse
         title="Choose your sensors"
         step={3}
-        isOpen={false}
         icon={<SpeakerPhone color="disabled" />}
         selected={false}
+        data={Sensors}
+        // type="sensors"
+        isOpen={openStep === 3}
+        onToggle={(step: number) => {openStep === 3  && step === 3 ? setOpenStep(0) : setOpenStep(step)}}
       />
       <Collapse
         title="Add extra protection"
         step={4}
-        isOpen={false}
         icon={<Apps color="disabled" />}
         selected={false}
+        data={Accessories}
+        // type="accessories"
+        isOpen={openStep === 4}
+        onToggle={(step: number) => {openStep === 4  && step === 4 ? setOpenStep(0) : setOpenStep(step)}}
       />
     </Stack>
   );
@@ -59,6 +77,9 @@ type CollapseProps = {
   isOpen: boolean;
   icon: React.ReactNode;
   selected: boolean;
+  data: any;
+  // type: "cameras" | "plan" | "accessories" | "sensors";
+  onToggle: (step: number) => void;
 } & (
   | {
       selected: true;
@@ -77,6 +98,9 @@ const Collapse = ({
   icon,
   selected,
   selectedCount,
+  data,
+  // type,
+  onToggle,
 }: CollapseProps) => {
   return (
     <CollapseContainer
@@ -85,19 +109,20 @@ const Collapse = ({
       title={title}
       step={step}
       isOpen={isOpen}
+      onToggle={()=>onToggle(step)}
     >
       <Grid
         container
         spacing={2}
         sx={{ alignItems: "stretch", justifyContent: "center" }}
       >
-        {Cameras.map((camera) => (
+        {data?.map((item: { id: number }) => (
           <Grid
-            key={camera.id}
+            key={item?.id}
             size={{ xs: 12, sm: 6, md: 4, lg: 6 }}
             sx={{ display: "flex" }}
           >
-            <ProductCard cardData={camera} />
+            <ProductCard cardData={item} type={ProductsNames[step-1] as ProductsNamesTypes} />
           </Grid>
         ))}
       </Grid>
@@ -108,13 +133,16 @@ const Collapse = ({
           justifyContent: "center",
         }}
       >
-        <Button
-          sx={{ mt: 2, textTransform: "none" }}
+        {step !== 4 && (
+          <Button
+          sx={{ mt: 2, textTransform: "none"}}
           variant="outlined"
           color="primary"
+          onClick={() => onToggle(step+1)}
         >
-          Next: Choose your plan
+          Next: Choose your {ProductsNames[step]}
         </Button>
+        )}
       </Box>
     </CollapseContainer>
   );

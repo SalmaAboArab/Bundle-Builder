@@ -1,17 +1,17 @@
-import cam1 from "../../../assets/cameras/cam1.png";
-import cam2 from "../../../assets/cameras/cam2.png";
-import cam3 from "../../../assets/cameras/cam3.png";
-import cam4 from "../../../assets/cameras/cam4.png";
-import cam5 from "../../../assets/cameras/cam5.png";
-import cam1B from "../../../assets/cameras/cam1B.png";
-import cam1G from "../../../assets/cameras/cam1G.png";
-import cam1W from "../../../assets/cameras/cam1W.png"; 
-import cam2B from "../../../assets/cameras/cam2B.png";
-import cam2W from "../../../assets/cameras/cam2W.png";
-import cam3B from "../../../assets/cameras/cam3B.png";
-import cam3W from "../../../assets/cameras/cam3W.png";
-import cam5B from "../../../assets/cameras/cam5B.png";
-import cam5W from "../../../assets/cameras/cam5W.png";
+import cam1 from "../assets/cameras/cam1.png";
+import cam2 from "../assets/cameras/cam2.png";
+import cam3 from "../assets/cameras/cam3.png";
+import cam4 from "../assets/cameras/cam4.png";
+import cam5 from "../assets/cameras/cam5.png";
+import cam1B from "../assets/cameras/cam1B.png";
+import cam1G from "../assets/cameras/cam1G.png";
+import cam1W from "../assets/cameras/cam1W.png"; 
+import cam2B from "../assets/cameras/cam2B.png";
+import cam2W from "../assets/cameras/cam2W.png";
+import cam3B from "../assets/cameras/cam3B.png";
+import cam3W from "../assets/cameras/cam3W.png";
+import cam5B from "../assets/cameras/cam5B.png";
+import cam5W from "../assets/cameras/cam5W.png";
 
 export const CamerasColors = {
     c1: [{color: "White", img: cam1W}, {color: "Black", img: cam1B}, {color: "Grey", img: cam1G}],
@@ -34,6 +34,7 @@ export const Cameras = [
         colors: CamerasColors["c1"],
         defaultColor: "White",
         count: 1,
+        selected: true,
     },
     {
         id: 2,
@@ -46,7 +47,8 @@ export const Cameras = [
         image: cam2,
         colors: CamerasColors["c2"],
         defaultColor: "White",
-        count: 2,
+        count: 1,
+        selected: true,
     },
     {
         id: 3,
@@ -60,6 +62,7 @@ export const Cameras = [
         colors: CamerasColors["c3"],
         defaultColor: "",
         count: 0,
+        selected: false,
     },
     {
         id: 4,
@@ -73,6 +76,7 @@ export const Cameras = [
         colors: [],
         defaultColor: "",
         count: 0,
+        selected: false,
     },
     {
         id: 5,
@@ -86,6 +90,7 @@ export const Cameras = [
         colors: CamerasColors["c5"],
         defaultColor: "",
         count: 0,
+        selected: false,
     },
 
 ]

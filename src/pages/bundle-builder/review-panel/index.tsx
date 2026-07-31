@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Button, Chip, Divider, Link, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 import SelectedItemGroup from "./selected-item-group";
 import CheckoutSection from "./checkout-section";
@@ -33,6 +33,8 @@ export default function ReviewPanel({SelectedItems}:{SelectedItems: SelectedType
         Review your personalized protection system designed to keep what matters
         most safe.
       </Typography>
+
+      <Divider sx={{width: '100%', mb: 2}}/>
 
       <Stack direction="column" spacing={2}>
         {SelectedItems?.cameras?.length > 0 && (

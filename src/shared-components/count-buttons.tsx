@@ -30,7 +30,7 @@ export default function CountButtons({count, onClickAction, ButtonSx}:CountButto
       >
         <Remove sx={{ width: "15px", height: "15px",  }} />
       </Button>
-      <Typography variant="body2">{count}</Typography>
+      <Typography variant="body2" sx={{fontSize: '16px'}}>{count}</Typography>
       <Button
         size="small"
         color="inherit"

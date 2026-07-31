@@ -1,8 +1,8 @@
 // Sensors
-import sensor1 from "../../../assets/sensors/sensor1.png";
-import sensor2 from "../../../assets/sensors/sensor2.png";
-import sensor3 from "../../../assets/sensors/sensor3.png";
-import sensor4 from "../../../assets/sensors/sensor4.png";
+import sensor1 from "../assets/sensors/wyze-sense-motion-sensor.webp";
+import sensor2 from "../assets/sensors/wyze-sense-entry-sensor.webp";
+import sensor3 from "../assets/sensors/wyze-sense-climate-sensor.webp";
+import sensor4 from "../assets/sensors/wyze-sense-leak-sensor-probe-wyze-labs-inc-800434.webp";
 
 export const Sensors = [
   {
@@ -16,7 +16,8 @@ export const Sensors = [
     image: sensor1,
     colors: [],
     defaultColor: "",
-    count: 0,
+    count: 1,
+    selected: true,
   },
   {
     id: 102,
@@ -27,7 +28,8 @@ export const Sensors = [
     image: sensor2,
     colors: [],
     defaultColor: "",
-    count: 0,
+    count: 1,
+    selected: true,
   },
   {
     id: 103,

@@ -1,7 +1,14 @@
-import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React from "react";
 import type { SelectedItemTypes } from "../types/main-types";
-import img from "../../../assets/hero.png";
+// import img from "../../../assets/hero.png";
 import CountButtons from "../../../shared-components/count-buttons";
 
 export default function SelectedItemGroup({
@@ -13,11 +20,7 @@ export default function SelectedItemGroup({
 }) {
   const theme = useTheme();
   return (
-    <Stack
-      direction="column"
-      spacing={2}
-      sx={{ borderTop: "1px solid #CED6DE", mt: 1.5, py: 1 }}
-    >
+    <Stack direction="column" spacing={1} sx={{}}>
       <Typography variant="caption" sx={{ color: "#A8B2BD" }}>
         {title}
       </Typography>
@@ -37,23 +40,66 @@ export default function SelectedItemGroup({
               }}
             >
               <img
-                src={img}
+                src={item?.image}
                 alt="Satisfaction Badge"
                 style={{ width: "35px", height: "35px", color: "#0AA288" }}
               />
             </Box>
             <Typography variant="body2">{item?.name}</Typography>
           </Stack>
-          <CountButtons count={item.count} onClickAction={(action: 'add' | 'remove')=>{}} 
-          ButtonSx={{
-            bgcolor: index%2 === 0 ? theme.palette.background.paper : '#F1F1F2',
-            color: '#575757',
-            border: index%2 !== 0 ? '1px solid #CED6DE' : 'none',
-          }} 
-          />
+
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            {title !== "PLAN" && (
+              <CountButtons
+                count={item.count}
+                onClickAction={(action: "add" | "remove") => {}}
+                ButtonSx={{
+                  bgcolor:
+                    index % 2 === 0
+                      ? theme.palette.background.paper
+                      : "#F1F1F2",
+                  color: "#575757",
+                  border: index % 2 !== 0 ? "1px solid #CED6DE" : "none",
+                }}
+              />
+            )}
+            {item?.hasDiscount ? (
+              <Stack direction="column" spacing={0} sx={{ alignItems: "end" }}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    color: "#6F7882",
+                    textDecoration: "line-through",
+                    // textDecorationThickness: "2px",
+                    fontWeight: 600,
+                  }}
+                >
+                  ${item?.price?.toFixed(2)}
+                </Typography>
+
+                <Typography
+                  variant="subtitle2"
+                  // sx={{ fontWeight: 700 }}
+                  color="primary"
+                  sx={{ fontWeight: 600 }}
+                >
+                  ${item?.discountPrice?.toFixed(2)}
+                </Typography>
+              </Stack>
+            ) : (
+              <Typography
+                variant="subtitle2"
+                color="primary"
+                sx={{ fontWeight: 600 }}
+              >
+                ${item?.price?.toFixed(2)}
+              </Typography>
+            )}
+          </Stack>
         </Stack>
       ))}
       {/* <Divider style={{marginTop: "10px"}}/> */}
+      <Divider sx={{ width: "100%" }} />
     </Stack>
   );
 }

@@ -1,9 +1,9 @@
 // Accessories
-import accessory1 from "../../../assets/accessories/accessory1.png";
-import accessory2 from "../../../assets/accessories/accessory2.png";
-import accessory3 from "../../../assets/accessories/accessory3.png";
-import accessory4 from "../../../assets/accessories/accessory4.png";
-import accessory5 from "../../../assets/accessories/accessory5.png";
+import accessory1 from "../assets/accessories/wyze-microsd-card.webp";
+import accessory2 from "../assets/accessories/wyze-outdoor-power-adapter.webp";
+import accessory3 from "../assets/accessories/wyze-battery-cam-pro.webp";
+import accessory4 from "../assets/accessories/wyze-cam-usb-extension-cable.webp";
+import accessory5 from "../assets/accessories/wyze-battery-cam-solar-panel.webp";
 
 export const Accessories = [
   {
@@ -12,10 +12,11 @@ export const Accessories = [
     desc: "Store continuous local recordings.",
     price: 8.99,
     hasDiscount: false,
-    image: accessory1,
+    image: accessory1 || '',
     colors: [],
     defaultColor: "",
-    count: 0,
+    count: 1,
+    selected: true,
   },
   {
     id: 202,
@@ -25,18 +26,18 @@ export const Accessories = [
     hasDiscount: true,
     discountPercentage: 13,
     discountPrice: 12.99,
-    image: accessory2,
+    image: accessory2 || '',
     colors: [],
     defaultColor: "",
     count: 0,
   },
   {
     id: 203,
-    name: "Wall Mount Kit",
-    desc: "Mount your camera securely indoors or outdoors.",
+    name: "Wyze Battery Cam Pro",
+    desc: "2.5K Outdoor Cam with Spotlight.",
     price: 9.99,
     hasDiscount: false,
-    image: accessory3,
+    image: accessory3 || '',
     colors: [],
     defaultColor: "",
     count: 0,
@@ -47,7 +48,7 @@ export const Accessories = [
     desc: "Extra reach for flexible camera placement.",
     price: 11.99,
     hasDiscount: false,
-    image: accessory4,
+    image: accessory4 || '',
     colors: [],
     defaultColor: "",
     count: 0,
@@ -60,7 +61,7 @@ export const Accessories = [
     hasDiscount: true,
     discountPercentage: 17,
     discountPrice: 24.99,
-    image: accessory5,
+    image: accessory5 || '',
     colors: [],
     defaultColor: "",
     count: 0,
