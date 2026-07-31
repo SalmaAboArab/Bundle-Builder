@@ -10,6 +10,12 @@ const theme = createTheme({
       main: "#EDF4FF",
     },
   },
+  typography: {
+    fontFamily: "Gilroy, Arial, sans-serif",
+    button: {
+      textTransform: "none",
+    },
+  },
 });
 
 export default theme;

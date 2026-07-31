@@ -113,7 +113,7 @@ export default function CheckoutSection() {
           <Button
             variant="contained"
             size="large"
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", fontWeight: 700 }}
             onClick={() => {
               toast.success("Success");
             }}
@@ -129,6 +129,7 @@ export default function CheckoutSection() {
               width: "100%",
               textAlign: "center",
               cursor: "pointer",
+              fontStyle: 'italic'
             }}
           >
             Save my system for later

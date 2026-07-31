@@ -142,7 +142,6 @@ export default function CollapseContainer({
               sx={{
                 // width: "100%",
                 // ml: 'auto',
-                textTransform: "none",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "end",

@@ -135,7 +135,7 @@ const Collapse = ({
       >
         {step !== 4 && (
           <Button
-          sx={{ mt: 2, textTransform: "none"}}
+          sx={{ mt: 2 }}
           variant="outlined"
           color="primary"
           onClick={() => onToggle(step+1)}
