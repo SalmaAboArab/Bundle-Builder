@@ -1,11 +1,12 @@
-import { Box, Button, Chip, Divider, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 import SelectedItemGroup from "./selected-item-group";
 import CheckoutSection from "./checkout-section";
-import type { SelectedTypes } from "../types/main-types";
+import { useAppContext } from "../../../context/app-context";
 
-export default function ReviewPanel({SelectedItems}:{SelectedItems: SelectedTypes}) {
+export default function ReviewPanel() {
   const theme = useTheme();
+  const { selectedProducts } = useAppContext();
   return (
     <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1 }}>
       <Typography
@@ -37,17 +38,17 @@ export default function ReviewPanel({SelectedItems}:{SelectedItems: SelectedType
       <Divider sx={{width: '100%', mb: 2}}/>
 
       <Stack direction="column" spacing={2}>
-        {SelectedItems?.cameras?.length > 0 && (
-        <SelectedItemGroup title="CAMERAS" data={SelectedItems.cameras}/>
+        {selectedProducts?.cameras?.length > 0 && (
+        <SelectedItemGroup title="CAMERAS" data={selectedProducts.cameras}/>
         )}
-        {SelectedItems?.sensors?.length > 0 && (
-        <SelectedItemGroup title="SENSORS" data={SelectedItems.sensors}/>
+        {selectedProducts?.sensors?.length > 0 && (
+        <SelectedItemGroup title="SENSORS" data={selectedProducts.sensors}/>
         )}
-        {SelectedItems?.accessories?.length > 0 && (
-        <SelectedItemGroup title="ACCESSORIES" data={SelectedItems.accessories}/>
+        {selectedProducts?.accessories?.length > 0 && (
+        <SelectedItemGroup title="ACCESSORIES" data={selectedProducts.accessories}/>
         )}
-        {SelectedItems?.plan?.length > 0 && (
-        <SelectedItemGroup title="PLAN" data={SelectedItems.plan}/>
+        {selectedProducts?.plan?.length > 0 && (
+        <SelectedItemGroup title="PLAN" data={selectedProducts.plan}/>
         )}
 
         <CheckoutSection/>

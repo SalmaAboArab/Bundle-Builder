@@ -1,6 +1,7 @@
 import planImg from '../assets/plan.jpg';
+import type { ProductTypes } from '../types/main-types';
 
-export const Plans = [
+export const Plans: ProductTypes[] = [
   {
     id: 301,
     name: "Cam Plus",

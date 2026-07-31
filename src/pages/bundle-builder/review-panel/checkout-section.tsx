@@ -3,10 +3,12 @@ import React from 'react'
 import badge from "../../../assets/satisfaction-badge.png";
 import delivery from "../../../assets/delivery_truck_speed.svg";
 import { useToast } from '../../../hooks/useToast';
+import { useAppContext } from '../../../context/app-context';
 
 export default function CheckoutSection() {
     const theme = useTheme();
     const toast = useToast();
+    const { selectedProducts } = useAppContext();
   return (
     <>
     <Stack direction="column" spacing={1} sx={{ pb: 2 }}>
@@ -130,6 +132,10 @@ export default function CheckoutSection() {
               textAlign: "center",
               cursor: "pointer",
               fontStyle: 'italic'
+            }}
+            onClick={()=>{
+              localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+              toast.success('System Saved Successfuly!');
             }}
           >
             Save my system for later

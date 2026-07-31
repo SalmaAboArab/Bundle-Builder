@@ -3,8 +3,9 @@ import sensor1 from "../assets/sensors/wyze-sense-motion-sensor.webp";
 import sensor2 from "../assets/sensors/wyze-sense-entry-sensor.webp";
 import sensor3 from "../assets/sensors/wyze-sense-climate-sensor.webp";
 import sensor4 from "../assets/sensors/wyze-sense-leak-sensor-probe-wyze-labs-inc-800434.webp";
+import type { ProductTypes } from "../types/main-types";
 
-export const Sensors = [
+export const Sensors: ProductTypes[] = [
   {
     id: 101,
     name: "Wyze Sense Motion Sensor",

@@ -4,8 +4,9 @@ import accessory2 from "../assets/accessories/wyze-outdoor-power-adapter.webp";
 import accessory3 from "../assets/accessories/wyze-battery-cam-pro.webp";
 import accessory4 from "../assets/accessories/wyze-cam-usb-extension-cable.webp";
 import accessory5 from "../assets/accessories/wyze-battery-cam-solar-panel.webp";
+import type { ProductTypes } from "../types/main-types";
 
-export const Accessories = [
+export const Accessories: ProductTypes[] = [
   {
     id: 201,
     name: "MicroSD Card 32GB",

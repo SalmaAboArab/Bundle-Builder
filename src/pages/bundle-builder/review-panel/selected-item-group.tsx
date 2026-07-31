@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import type { SelectedItemTypes } from "../types/main-types";
+import type { ProductTypes } from "../../../types/main-types";
 // import img from "../../../assets/hero.png";
 import CountButtons from "../../../shared-components/count-buttons";
 
@@ -25,7 +25,7 @@ export default function SelectedItemGroup({
         {title}
       </Typography>
 
-      {data?.map((item: SelectedItemTypes, index: number) => (
+      {data?.map((item: ProductTypes, index: number) => (
         <Stack direction="row" sx={{ justifyContent: "space-between" }}>
           <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
             <Box

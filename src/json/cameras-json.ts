@@ -12,6 +12,7 @@ import cam3B from "../assets/cameras/cam3B.png";
 import cam3W from "../assets/cameras/cam3W.png";
 import cam5B from "../assets/cameras/cam5B.png";
 import cam5W from "../assets/cameras/cam5W.png";
+import type { ProductTypes } from "../types/main-types";
 
 export const CamerasColors = {
     c1: [{color: "White", img: cam1W}, {color: "Black", img: cam1B}, {color: "Grey", img: cam1G}],
@@ -21,7 +22,7 @@ export const CamerasColors = {
     c5: [{color: "White", img: cam5W}, {color: "Black", img: cam5B}],
 }
 
-export const Cameras = [
+export const Cameras: ProductTypes[] = [
     {
         id: 1,
         name: "Wyze Cam v4",

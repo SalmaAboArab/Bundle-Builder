@@ -13,7 +13,7 @@ import { Sensors } from "../../../json/sensors-json";
 import { Plans } from "../../../json/plan-json";
 import { Accessories } from "../../../json/accessories-json";
 import { ProductsNames } from "../../../json/global-json";
-import type { ProductsNamesTypes } from "../types/main-types";
+import type { ProductsNamesTypes } from "../../../types/main-types";
 
 export default function Builder() {
   const theme = useTheme();
