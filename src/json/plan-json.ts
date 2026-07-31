@@ -1,7 +1,4 @@
-// Plans
-import plan1 from "../../../assets/plans/plan1.png";
-import plan2 from "../../../assets/plans/plan2.png";
-import plan3 from "../../../assets/plans/plan3.png";
+import planImg from '../assets/plan.jpg';
 
 export const Plans = [
   {
@@ -12,7 +9,7 @@ export const Plans = [
     hasDiscount: true,
     discountPercentage: 17,
     discountPrice: 2.49,
-    image: plan1,
+    image: planImg,
     colors: [],
     defaultColor: "",
     count: 0,
@@ -23,10 +20,11 @@ export const Plans = [
     desc: "Premium AI features for all your cameras under one subscription.",
     price: 9.99,
     hasDiscount: false,
-    image: plan2,
+    image: planImg,
     colors: [],
     defaultColor: "",
-    count: 0,
+    count: 1,
+    selected: true,
   },
   {
     id: 303,
@@ -36,7 +34,7 @@ export const Plans = [
     hasDiscount: true,
     discountPercentage: 15,
     discountPrice: 16.99,
-    image: plan3,
+    image: planImg,
     colors: [],
     defaultColor: "",
     count: 0,
