@@ -3,12 +3,13 @@ import React from "react";
 import SelectedItemGroup from "./selected-item-group";
 import CheckoutSection from "./checkout-section";
 import { useAppContext } from "../../../context/app-context";
+import styles from "./review-panel.module.css";
 
 export default function ReviewPanel() {
   const theme = useTheme();
   const { selectedItems } = useAppContext();
   return (
-    <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1 }}>
+    <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1, overflowY: "auto", maxHeight: "100vh" }} className={styles.scrollBarStyling}>
       <Typography
         variant="caption"
         // gutterBottom
