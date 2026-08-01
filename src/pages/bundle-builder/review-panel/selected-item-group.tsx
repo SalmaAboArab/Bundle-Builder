@@ -15,22 +15,6 @@ export default function SelectedItemGroup({
   const theme = useTheme();
   const { decreaseQuantity, increaseQuantity } = useAppContext();
 
-  // const selectedData = data.flatMap((item) => {
-  //   if (item.colors?.length) {
-  //     return item.colors
-  //       .filter((c) => c.selected > 0)
-  //       .map((c) => ({
-  //         ...item,
-  //         name: `${item.name} - ${c.color}`,
-  //         image: c.img,
-  //         selected: c.selected,
-  //         count: c.count,
-  //       }));
-  //   }
-
-  //   return (item.selected ?? 0) > 0 ? [item] : [];
-  // });
-
   const selectedData = data.flatMap((item) => {
     if (item.colors?.length) {
       return item.colors
@@ -82,22 +66,6 @@ export default function SelectedItemGroup({
               <CountButtons
                 count={item.count ?? 0}
                 selected={item.selected ?? 0}
-                // count={item?.count || 0}
-                // count={
-                //   item.colors?.length
-                //     ? (item.colors.find(
-                //         (c: { id: string }) => c.id === item.selectedColor,
-                //       )?.count ?? 0)
-                //     : (item.count ?? 0)
-                // }
-                // selected={
-                //   item.colors?.length
-                //     ? (item.colors.find(
-                //         (c: { id: string }) => c.id === item.selectedColor,
-                //       )?.selected ?? 0)
-                //     : (item.selected ?? 0)
-                // }
-                // category={category}
                 onClickAction={(action: "add" | "remove") => {
                   if (action === "remove") {
                     decreaseQuantity(
@@ -158,7 +126,6 @@ export default function SelectedItemGroup({
           </Stack>
         </Stack>
       ))}
-      {/* <Divider style={{marginTop: "10px"}}/> */}
       <Divider sx={{ width: "100%" }} />
     </Stack>
   );

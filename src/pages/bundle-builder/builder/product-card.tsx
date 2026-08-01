@@ -99,11 +99,7 @@ export default function ProductCard({
               <ButtonBase
                 onClick={() => changeVariant(type, cardData.id, option.id)}
                 sx={{
-                  // width: "100%",
                   px: 0.5,
-                  // border: "0.5px solid #CCCCCC",
-                  // borderColor: "primary.main",
-                  //   selected === option.color ? "primary.main" : "divider",
                   border:
                     cardData.selectedColor === option.id
                       ? `1px solid ${theme.palette.primary.main}`
@@ -112,7 +108,6 @@ export default function ProductCard({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "flex-start",
-                  // gap: 0.3,
                   transition: "all .2s",
 
                   "&:hover": {
@@ -146,10 +141,6 @@ export default function ProductCard({
             }}
           >
             {type !== "plan" && (
-              // <CountButtons
-              //   count={cardData.count | 0}
-              //   onClickAction={(action: "add" | "remove") => {}}
-              // />
               <CountButtons
                 count={
                   cardData.colors?.length
@@ -191,8 +182,6 @@ export default function ProductCard({
 
                 <Typography
                   variant="subtitle1"
-                  // sx={{ fontWeight: 700 }}
-                  // color="error.main"
                 >
                   ${cardData?.discountPrice?.toFixed(2)}
                 </Typography>

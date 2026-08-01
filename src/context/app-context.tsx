@@ -224,17 +224,6 @@ export function AppProvider({ children }: Props) {
     }));
   };
 
-  // const selectPlan = (planId: number) => {
-  //   setProducts((prev) => ({
-  //     ...prev,
-  //     plan: prev.plan.map((plan) => ({
-  //       ...plan,
-  //       count: plan.id === planId ? 0 : 1,
-  //       selected: plan.id === planId ? 1 : 0,
-  //     })),
-  //   }));
-  // };
-
   const selectPlan = (planId: number) => {
     setProducts((prev) => {
       const currentPlan = prev.plan.find((plan) => plan.id === planId);

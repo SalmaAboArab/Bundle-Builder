@@ -45,11 +45,6 @@ export default function CollapseContainer({
   onToggle,
 }: Props) {
   const theme = useTheme();
-  // const [open, setOpen] = useState<boolean>(isOpen || false);
-
-  // const handleCollapseToggle = () => {
-  //   setOpen(!open);
-  // };
 
   return (
     <Box
@@ -96,7 +91,6 @@ export default function CollapseContainer({
                 gap: 1,
               }}
             >
-              {/* ///// */}
 
               <Box sx={{ display: "flex", alignItems: "center" }}>{icon}</Box>
 
@@ -114,9 +108,6 @@ export default function CollapseContainer({
                   {title}
                 </Typography>
               </Tooltip>
-              {/* <Box component="div" sx={{ flexGrow: 1, ml: 2, display: {sm: 'block', xs: 'none'} }}>
-              <Divider />
-            </Box> */}
             </Box>
           </Grid>
 
@@ -140,8 +131,6 @@ export default function CollapseContainer({
               // variant="text"
               size="small"
               sx={{
-                // width: "100%",
-                // ml: 'auto',
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "end",

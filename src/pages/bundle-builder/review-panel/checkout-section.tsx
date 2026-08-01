@@ -53,16 +53,13 @@ export default function CheckoutSection() {
                 textDecoration: "line-through",
                 textDecorationThickness: "2px",
                 fontSize: "14px",
-                // fontWeight: 'bold'
               }}
             >
               $5.99
-              {/* ${cardData.price.toFixed(2)} */}
             </Typography>
 
             <Typography
               variant="subtitle2"
-              // sx={{ fontWeight: 700 }}
               color="primary"
               sx={{ fontSize: "14px", fontWeight: "bold" }}
             >
@@ -104,7 +101,6 @@ export default function CheckoutSection() {
                     textDecoration: "line-through",
                     textDecorationThickness: "2px",
                     fontSize: "18px",
-                    // fontWeight: 'bold'
                   }}
                 >
                   ${subtotal.toFixed(2)}
@@ -113,12 +109,10 @@ export default function CheckoutSection() {
 
               <Typography
                 variant="body1"
-                // sx={{ fontWeight: 700 }}
                 color="primary"
                 sx={{ fontSize: "24px", fontWeight: "bold" }}
               >
                 ${total.toFixed(2)}
-                {/* ${cardData?.discountPrice?.toFixed(2)} */}
               </Typography>
             </Stack>
           </Stack>

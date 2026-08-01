@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Button, Grid, Stack, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import ProductCard from "./product-card";
 import CollapseContainer from "../../../shared-components/collapse-container";
@@ -20,9 +20,6 @@ export default function Builder() {
     <Stack
       direction="column"
       spacing={1}
-      // sx={{
-      //   color: "black",
-      // }}
     >
       <Collapse
         title="Choose your cameras"
@@ -82,17 +79,7 @@ type CollapseProps = {
   // type: "cameras" | "plan" | "accessories" | "sensors";
   onToggle: (step: number) => void;
   selectedCount: number;
-} 
-// & (
-//   | {
-//       selected: true;
-//       selectedCount: number;
-//     }
-//   | {
-//       selected: false;
-//       selectedCount?: never;
-//     }
-// );
+}
 
 const Collapse = ({
   title,
