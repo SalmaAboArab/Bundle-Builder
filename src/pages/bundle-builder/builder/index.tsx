@@ -15,7 +15,7 @@ import { useAppContext } from "../../../context/app-context";
 export default function Builder() {
   const theme = useTheme();
   const [openStep, setOpenStep] = useState(1);
-  const { Products } = useAppContext();
+  const { Products, selectedItems } = useAppContext();
   return (
     <Stack
       direction="column"
@@ -28,8 +28,8 @@ export default function Builder() {
         title="Choose your cameras"
         step={1}
         icon={<CameraRearOutlined color="disabled" />}
-        selected={true}
-        selectedCount={2}
+        selected={selectedItems.cameras.length > 0}
+        selectedCount={selectedItems.cameras.length}
         data={Products?.cameras}
         // type="cameras"
         isOpen={openStep === 1}
@@ -39,7 +39,8 @@ export default function Builder() {
         title="Choose your plan"
         step={2}
         icon={<PentagonOutlined color="disabled" />}
-        selected={false}
+        selected={selectedItems.plan.length > 0}
+        selectedCount={selectedItems.plan.length}
         data={Products?.plan}
         // type="plan"
         isOpen={openStep === 2}
@@ -49,7 +50,8 @@ export default function Builder() {
         title="Choose your sensors"
         step={3}
         icon={<SpeakerPhone color="disabled" />}
-        selected={false}
+        selected={selectedItems.sensors.length > 0}
+        selectedCount={selectedItems.sensors.length}
         data={Products?.sensors}
         // type="sensors"
         isOpen={openStep === 3}
@@ -59,7 +61,8 @@ export default function Builder() {
         title="Add extra protection"
         step={4}
         icon={<Apps color="disabled" />}
-        selected={false}
+        selected={selectedItems.accessories.length > 0}
+        selectedCount={selectedItems.accessories.length}
         data={Products?.accessories}
         // type="accessories"
         isOpen={openStep === 4}
@@ -78,16 +81,18 @@ type CollapseProps = {
   data: any;
   // type: "cameras" | "plan" | "accessories" | "sensors";
   onToggle: (step: number) => void;
-} & (
-  | {
-      selected: true;
-      selectedCount: number;
-    }
-  | {
-      selected: false;
-      selectedCount?: never;
-    }
-);
+  selectedCount: number;
+} 
+// & (
+//   | {
+//       selected: true;
+//       selectedCount: number;
+//     }
+//   | {
+//       selected: false;
+//       selectedCount?: never;
+//     }
+// );
 
 const Collapse = ({
   title,
