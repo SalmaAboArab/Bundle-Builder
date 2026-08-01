@@ -9,7 +9,7 @@ export default function ReviewPanel() {
   const theme = useTheme();
   const { selectedItems } = useAppContext();
   return (
-    <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1, overflowY: "auto", maxHeight: "100vh" }} className={styles.scrollBarStyling}>
+    <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1, overflowY: "auto", maxHeight: "150vh" }} className={styles.scrollBarStyling}>
       <Typography
         variant="caption"
         // gutterBottom
