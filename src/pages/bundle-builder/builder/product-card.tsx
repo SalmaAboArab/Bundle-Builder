@@ -10,24 +10,44 @@ import {
 } from "@mui/material";
 import React from "react";
 import CountButtons from "../../../shared-components/count-buttons";
+import type { ColorsType, ProductType } from "../../../types/main-types";
+import { useAppContext } from "../../../context/app-context";
 
-export default function ProductCard({ cardData, type }: {cardData: any; type: 'cameras' | 'plan' | 'accessories' | 'sensors';}) {
+export default function ProductCard({
+  cardData,
+  type,
+}: {
+  cardData: ProductType;
+  type: "cameras" | "plan" | "accessories" | "sensors";
+}) {
   const theme = useTheme();
+  const { changeVariant, increaseQuantity, decreaseQuantity, selectPlan } =
+    useAppContext();
+  const isSelected = cardData?.colors?.length
+    ? cardData.colors.some((color: ColorsType) => color.selected > 0)
+    : (cardData?.selected ?? 0) > 0;
+
   return (
     <Box
-      sx={{ bgcolor: theme.palette.background.paper, p: 1.5, borderRadius: 2, width: '100%', display: 'flex', 
-        border: cardData?.selected ? `2px solid ${theme.palette.primary.main}` : 'none',
-        ":hover":{
-        boxShadow: 1, cursor: 'pointer'
-      } }}
+      sx={{
+        bgcolor: theme.palette.background.paper,
+        p: 1.5,
+        borderRadius: 2,
+        width: "100%",
+        display: "flex",
+        border: isSelected ? `2px solid ${theme.palette.primary.main}` : "none",
+        ":hover": {
+          boxShadow: 1,
+          cursor: "pointer",
+        },
+      }}
+      onClick={() => {
+        if (type === "plan") selectPlan(cardData.id);
+      }}
     >
-      <Grid container spacing={2} sx={{alignItems: 'center'}}>
-        <Grid size={{ xs: 12, md: 4 }} 
-        // sx={{width: '100%', height:'100%'}}
-        >
-          <Stack direction="column" spacing={1} 
-          // sx={{width: '100%', height:'100%'}}
-          >
+      <Grid container spacing={2} sx={{ alignItems: "center" }}>
+        <Grid size={{ xs: 12, md: 4 }}>
+          <Stack direction="column" spacing={1}>
             {cardData.hasDiscount && (
               <Chip
                 label={
@@ -40,17 +60,15 @@ export default function ProductCard({ cardData, type }: {cardData: any; type: 'c
                 }
                 color="primary"
                 size="small"
-                sx={{width: '80px'}}
+                sx={{ width: "80px" }}
               />
             )}
-            <Box 
-            // sx={{width: '100%', height:'70%'}}
-            >
-            <img
-              src={cardData?.image}
-              alt={cardData?.name}
-              style={{ width: "100%", height: '100%', borderRadius: 8 }}
-            />
+            <Box>
+              <img
+                src={cardData?.image}
+                alt={cardData?.name}
+                style={{ width: "100%", height: "100%", borderRadius: 8 }}
+              />
             </Box>
           </Stack>
         </Grid>
@@ -79,13 +97,17 @@ export default function ProductCard({ cardData, type }: {cardData: any; type: 'c
           >
             {cardData?.colors?.map((option: any) => (
               <ButtonBase
-                // onClick={() => setSelected(option.color)}
+                onClick={() => changeVariant(type, cardData.id, option.id)}
                 sx={{
                   // width: "100%",
                   px: 0.5,
-                  border: "0.5px solid #CCCCCC",
+                  // border: "0.5px solid #CCCCCC",
                   // borderColor: "primary.main",
                   //   selected === option.color ? "primary.main" : "divider",
+                  border:
+                    cardData.selectedColor === option.id
+                      ? `1px solid ${theme.palette.primary.main}`
+                      : "0.5px solid #CCCCCC",
                   borderRadius: 1,
                   display: "flex",
                   alignItems: "center",
@@ -123,7 +145,37 @@ export default function ProductCard({ cardData, type }: {cardData: any; type: 'c
               justifyContent: "space-between",
             }}
           >
-            {type !== 'plan' && <CountButtons count={cardData.count} onClickAction={(action: 'add' | 'remove')=>{}}/>}
+            {type !== "plan" && (
+              // <CountButtons
+              //   count={cardData.count | 0}
+              //   onClickAction={(action: "add" | "remove") => {}}
+              // />
+              <CountButtons
+                count={
+                  cardData.colors?.length
+                    ? (cardData.colors.find(
+                        (c: { id: string }) => c.id === cardData.selectedColor,
+                      )?.count ?? 0)
+                    : (cardData.count ?? 0)
+                }
+                selected={
+                  cardData.colors?.length
+                    ? (cardData.colors.find(
+                        (c: { id: string }) => c.id === cardData.selectedColor,
+                      )?.selected ?? 0)
+                    : (cardData.selected ?? 0)
+                }
+                onClickAction={(action) => {
+                  if (action === "add") {
+                    increaseQuantity(type, cardData.id, cardData.selectedColor);
+                  }
+
+                  if (action === "remove") {
+                    decreaseQuantity(type, cardData.id, cardData.selectedColor);
+                  }
+                }}
+              />
+            )}
             {cardData.hasDiscount ? (
               <Stack direction="column" spacing={0} sx={{ mt: 1 }}>
                 <Typography

@@ -1,31 +1,60 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
-import type { ProductTypes } from "../../../types/main-types";
+import type { ProductCategory, ProductType } from "../../../types/main-types";
 // import img from "../../../assets/hero.png";
 import CountButtons from "../../../shared-components/count-buttons";
+import { useAppContext } from "../../../context/app-context";
 
 export default function SelectedItemGroup({
   title,
   data,
 }: {
-  title: string;
-  data: any;
+  title: ProductCategory;
+  data: ProductType[];
 }) {
   const theme = useTheme();
+  const { decreaseQuantity, increaseQuantity } = useAppContext();
+
+  // const selectedData = data.flatMap((item) => {
+  //   if (item.colors?.length) {
+  //     return item.colors
+  //       .filter((c) => c.selected > 0)
+  //       .map((c) => ({
+  //         ...item,
+  //         name: `${item.name} - ${c.color}`,
+  //         image: c.img,
+  //         selected: c.selected,
+  //         count: c.count,
+  //       }));
+  //   }
+
+  //   return (item.selected ?? 0) > 0 ? [item] : [];
+  // });
+
+  const selectedData = data.flatMap((item) => {
+    if (item.colors?.length) {
+      return item.colors
+        .filter((c) => c.selected > 0)
+        .map((c) => ({
+          ...item,
+          name: `${item.name} - ${c.color}`,
+          image: c.img,
+          selectedColor: c.id,
+          selected: c.selected,
+          count: c.count,
+        }));
+    }
+
+    return (item.selected ?? 0) > 0 ? [item] : [];
+  });
+
   return (
     <Stack direction="column" spacing={1} sx={{}}>
       <Typography variant="caption" sx={{ color: "#A8B2BD" }}>
-        {title}
+        {title.toLocaleUpperCase()}
       </Typography>
 
-      {data?.map((item: ProductTypes, index: number) => (
+      {selectedData?.map((item: ProductType, index: number) => (
         <Stack direction="row" sx={{ justifyContent: "space-between" }}>
           <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
             <Box
@@ -49,10 +78,41 @@ export default function SelectedItemGroup({
           </Stack>
 
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            {title !== "PLAN" && (
+            {title.toUpperCase() !== "PLAN" && (
               <CountButtons
-                count={item.count}
-                onClickAction={(action: "add" | "remove") => {}}
+                count={item.count ?? 0}
+                selected={item.selected ?? 0}
+                // count={item?.count || 0}
+                // count={
+                //   item.colors?.length
+                //     ? (item.colors.find(
+                //         (c: { id: string }) => c.id === item.selectedColor,
+                //       )?.count ?? 0)
+                //     : (item.count ?? 0)
+                // }
+                // selected={
+                //   item.colors?.length
+                //     ? (item.colors.find(
+                //         (c: { id: string }) => c.id === item.selectedColor,
+                //       )?.selected ?? 0)
+                //     : (item.selected ?? 0)
+                // }
+                // category={category}
+                onClickAction={(action: "add" | "remove") => {
+                  if (action === "remove") {
+                    decreaseQuantity(
+                      title?.toLowerCase() as ProductCategory,
+                      item.id,
+                      item.selectedColor,
+                    );
+                  } else {
+                    increaseQuantity(
+                      title?.toLowerCase() as ProductCategory,
+                      item.id,
+                      item.selectedColor,
+                    );
+                  }
+                }}
                 ButtonSx={{
                   bgcolor:
                     index % 2 === 0

@@ -6,7 +6,7 @@ import { useAppContext } from "../../../context/app-context";
 
 export default function ReviewPanel() {
   const theme = useTheme();
-  const { selectedProducts } = useAppContext();
+  const { selectedItems } = useAppContext();
   return (
     <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1 }}>
       <Typography
@@ -38,17 +38,17 @@ export default function ReviewPanel() {
       <Divider sx={{width: '100%', mb: 2}}/>
 
       <Stack direction="column" spacing={2}>
-        {selectedProducts?.cameras?.length > 0 && (
-        <SelectedItemGroup title="CAMERAS" data={selectedProducts.cameras}/>
+        {selectedItems?.cameras?.length > 0 && (
+        <SelectedItemGroup title="cameras" data={selectedItems.cameras}/>
         )}
-        {selectedProducts?.sensors?.length > 0 && (
-        <SelectedItemGroup title="SENSORS" data={selectedProducts.sensors}/>
+        {selectedItems?.sensors?.length > 0 && (
+        <SelectedItemGroup title="sensors" data={selectedItems.sensors}/>
         )}
-        {selectedProducts?.accessories?.length > 0 && (
-        <SelectedItemGroup title="ACCESSORIES" data={selectedProducts.accessories}/>
+        {selectedItems?.accessories?.length > 0 && (
+        <SelectedItemGroup title="accessories" data={selectedItems.accessories}/>
         )}
-        {selectedProducts?.plan?.length > 0 && (
-        <SelectedItemGroup title="PLAN" data={selectedProducts.plan}/>
+        {selectedItems?.plan?.length > 0 && (
+        <SelectedItemGroup title="plan" data={selectedItems.plan}/>
         )}
 
         <CheckoutSection/>
