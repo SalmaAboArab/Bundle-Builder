@@ -24,12 +24,6 @@ Run the development server:
 npm run dev
 ```
 
-Build the project:
-
-```bash
-npm run build
-```
-
 ## Notes
 
 * The application is fully data-driven using local JSON files.
