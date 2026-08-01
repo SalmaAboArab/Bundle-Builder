@@ -12,16 +12,17 @@ import cam3B from "../assets/cameras/cam3B.png";
 import cam3W from "../assets/cameras/cam3W.png";
 import cam5B from "../assets/cameras/cam5B.png";
 import cam5W from "../assets/cameras/cam5W.png";
+import type { ColorsType, ProductType } from "../types/main-types";
 
 export const CamerasColors = {
-    c1: [{color: "White", img: cam1W}, {color: "Black", img: cam1B}, {color: "Grey", img: cam1G}],
-    c2: [{color: "White", img: cam2W}, {color: "Black", img: cam2B}],
-    c3: [{color: "White", img: cam3W}, {color: "Black", img: cam3B}],
+    c1: [{id: "white", color: "White", img: cam1W, count: 6, selected: 1}, {id: "black", color: "Black", img: cam1B, count: 4, selected: 0}, {id: "grey", color: "Grey", img: cam1G, count: 2, selected: 0}],
+    c2: [{id: "white", color: "White", img: cam2W, count: 3, selected: 1}, {id: "black", color: "Black", img: cam2B, count: 6, selected: 0}],
+    c3: [{id: "white", color: "White", img: cam3W, count: 2, selected: 0}, {id: "black", color: "Black", img: cam3B, count: 2, selected: 0}],
     c4: [],
-    c5: [{color: "White", img: cam5W}, {color: "Black", img: cam5B}],
+    c5: [{id: "white", color: "White", img: cam5W, count: 2, selected: 0}, {id: "black", color: "Black", img: cam5B, count: 0, selected: 0}],
 }
 
-export const Cameras = [
+export const Cameras: ProductType[] = [
     {
         id: 1,
         name: "Wyze Cam v4",
@@ -31,10 +32,9 @@ export const Cameras = [
         discountPercentage: 22,
         discountPrice: 27.98,
         image: cam1,
-        colors: CamerasColors["c1"],
-        defaultColor: "White",
-        count: 1,
-        selected: true,
+        colors: CamerasColors["c1"] as ColorsType[],
+        selectedColor:"white",
+        // selected: true,
     },
     {
         id: 2,
@@ -45,10 +45,9 @@ export const Cameras = [
         discountPercentage: 12,
         discountPrice: 34.98,
         image: cam2,
-        colors: CamerasColors["c2"],
-        defaultColor: "White",
-        count: 1,
-        selected: true,
+        colors: CamerasColors["c2"] as ColorsType[],
+        selectedColor:"white",
+        // selected: true,
     },
     {
         id: 3,
@@ -59,10 +58,10 @@ export const Cameras = [
         discountPercentage: 22,
         discountPrice: 69.98,
         image: cam3,
-        colors: CamerasColors["c3"],
-        defaultColor: "",
-        count: 0,
-        selected: false,
+        colors: CamerasColors["c3"] as ColorsType[],
+        selectedColor: "",
+        // count: 0,
+        // selected: false,
     },
     {
         id: 4,
@@ -73,10 +72,11 @@ export const Cameras = [
         // discountPercentage: 0,
         // discountPrice: 0,
         image: cam4,
-        colors: [],
-        defaultColor: "",
-        count: 0,
-        selected: false,
+        // colors: [],
+        // selectedColor: "",
+        count: 3,
+        selected: 0,
+        // selected: false,
     },
     {
         id: 5,
@@ -87,10 +87,10 @@ export const Cameras = [
         // discountPercentage: 0,
         // discountPrice: 0,
         image: cam5,
-        colors: CamerasColors["c5"],
-        defaultColor: "",
-        count: 0,
-        selected: false,
+        colors: CamerasColors["c5"] as ColorsType[],
+        selectedColor: "",
+        // count: 0,
+        // selected: false,
     },
 
 ]

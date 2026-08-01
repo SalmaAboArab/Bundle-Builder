@@ -1,0 +1,27 @@
+  /* WebKit */
+  .scrollBarStyling::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollBarStyling::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollBarStyling::-webkit-scrollbar-thumb {
+  background: #979fa7;
+  /* #888; */
+  border-radius: 6px;
+}
+
+.scrollBarStyling::-webkit-scrollbar-thumb:hover {
+  background: #979fa7;
+  /* #555; */
+}
+
+/* Firefox */
+.scrollBarStyling {
+  scrollbar-width: thin;
+  scrollbar-color: #979fa7 transparent;
+  
+  /* #888 transparent; */
+}

@@ -6,6 +6,7 @@ import "./fonts.css";
 
 import App from "./App";
 import theme from "./theme";
+import { AppProvider } from "./context/app-context";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -20,8 +21,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           horizontal: "right",
         }}
       >
-        <App />
+        <AppProvider>
+          <App />
+        </AppProvider>
       </SnackbarProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

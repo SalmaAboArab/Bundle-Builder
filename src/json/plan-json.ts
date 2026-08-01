@@ -1,6 +1,7 @@
 import planImg from '../assets/plan.jpg';
+import type { ProductType } from '../types/main-types';
 
-export const Plans = [
+export const Plans: ProductType[] = [
   {
     id: 301,
     name: "Cam Plus",
@@ -10,9 +11,10 @@ export const Plans = [
     discountPercentage: 17,
     discountPrice: 2.49,
     image: planImg,
-    colors: [],
-    defaultColor: "",
-    count: 0,
+    // colors: [],
+    // selectedColor: "",
+    count: 2,
+    selected: 0,
   },
   {
     id: 302,
@@ -21,10 +23,11 @@ export const Plans = [
     price: 9.99,
     hasDiscount: false,
     image: planImg,
-    colors: [],
-    defaultColor: "",
+    // colors: [],
+    // selectedColor: "",
     count: 1,
-    selected: true,
+    selected: 1,
+    // selected: true,
   },
   {
     id: 303,
@@ -35,8 +38,9 @@ export const Plans = [
     discountPercentage: 15,
     discountPrice: 16.99,
     image: planImg,
-    colors: [],
-    defaultColor: "",
-    count: 0,
+    // colors: [],
+    // selectedColor: "",
+    count: 3,
+    selected: 0,
   },
 ];

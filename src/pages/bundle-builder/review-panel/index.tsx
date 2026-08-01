@@ -1,13 +1,15 @@
-import { Box, Button, Chip, Divider, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 import SelectedItemGroup from "./selected-item-group";
 import CheckoutSection from "./checkout-section";
-import type { SelectedTypes } from "../types/main-types";
+import { useAppContext } from "../../../context/app-context";
+import styles from "./review-panel.module.css";
 
-export default function ReviewPanel({SelectedItems}:{SelectedItems: SelectedTypes}) {
+export default function ReviewPanel() {
   const theme = useTheme();
+  const { selectedItems } = useAppContext();
   return (
-    <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1 }}>
+    <Box sx={{ bgcolor: theme.palette.secondary.main, p: 2, borderRadius: 1, overflowY: "auto", maxHeight: "150vh" }} className={styles.scrollBarStyling}>
       <Typography
         variant="caption"
         // gutterBottom
@@ -37,17 +39,17 @@ export default function ReviewPanel({SelectedItems}:{SelectedItems: SelectedType
       <Divider sx={{width: '100%', mb: 2}}/>
 
       <Stack direction="column" spacing={2}>
-        {SelectedItems?.cameras?.length > 0 && (
-        <SelectedItemGroup title="CAMERAS" data={SelectedItems.cameras}/>
+        {selectedItems?.cameras?.length > 0 && (
+        <SelectedItemGroup title="cameras" data={selectedItems.cameras}/>
         )}
-        {SelectedItems?.sensors?.length > 0 && (
-        <SelectedItemGroup title="SENSORS" data={SelectedItems.sensors}/>
+        {selectedItems?.sensors?.length > 0 && (
+        <SelectedItemGroup title="sensors" data={selectedItems.sensors}/>
         )}
-        {SelectedItems?.accessories?.length > 0 && (
-        <SelectedItemGroup title="ACCESSORIES" data={SelectedItems.accessories}/>
+        {selectedItems?.accessories?.length > 0 && (
+        <SelectedItemGroup title="accessories" data={selectedItems.accessories}/>
         )}
-        {SelectedItems?.plan?.length > 0 && (
-        <SelectedItemGroup title="PLAN" data={SelectedItems.plan}/>
+        {selectedItems?.plan?.length > 0 && (
+        <SelectedItemGroup title="plan" data={selectedItems.plan}/>
         )}
 
         <CheckoutSection/>

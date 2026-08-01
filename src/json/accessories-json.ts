@@ -4,8 +4,9 @@ import accessory2 from "../assets/accessories/wyze-outdoor-power-adapter.webp";
 import accessory3 from "../assets/accessories/wyze-battery-cam-pro.webp";
 import accessory4 from "../assets/accessories/wyze-cam-usb-extension-cable.webp";
 import accessory5 from "../assets/accessories/wyze-battery-cam-solar-panel.webp";
+import type { ProductType } from "../types/main-types";
 
-export const Accessories = [
+export const Accessories: ProductType[] = [
   {
     id: 201,
     name: "MicroSD Card 32GB",
@@ -13,10 +14,10 @@ export const Accessories = [
     price: 8.99,
     hasDiscount: false,
     image: accessory1 || '',
-    colors: [],
-    defaultColor: "",
-    count: 1,
-    selected: true,
+    // colors: [],
+    // selectedColor: "",
+    count: 3,
+    selected: 1,
   },
   {
     id: 202,
@@ -27,9 +28,10 @@ export const Accessories = [
     discountPercentage: 13,
     discountPrice: 12.99,
     image: accessory2 || '',
-    colors: [],
-    defaultColor: "",
-    count: 0,
+    // colors: [],
+    // selectedColor: "",
+    count: 3,
+    selected: 1,
   },
   {
     id: 203,
@@ -38,9 +40,10 @@ export const Accessories = [
     price: 9.99,
     hasDiscount: false,
     image: accessory3 || '',
-    colors: [],
-    defaultColor: "",
-    count: 0,
+    // colors: [],
+    // selectedColor: "",
+    count: 5,
+    selected: 0,
   },
   {
     id: 204,
@@ -49,9 +52,10 @@ export const Accessories = [
     price: 11.99,
     hasDiscount: false,
     image: accessory4 || '',
-    colors: [],
-    defaultColor: "",
-    count: 0,
+    // colors: [],
+    // selectedColor: "",
+    count: 7,
+    selected: 0,
   },
   {
     id: 205,
@@ -62,8 +66,9 @@ export const Accessories = [
     discountPercentage: 17,
     discountPrice: 24.99,
     image: accessory5 || '',
-    colors: [],
-    defaultColor: "",
-    count: 0,
+    // colors: [],
+    // selectedColor: "",
+    count: 10,
+    selected: 0,
   },
 ];
